@@ -36,15 +36,14 @@ class Accion {
         this.fecha = fecha;
     }
 }
-class Historial {
-    constructor() {
+class Hiistorial {
+    constructor(id) {
         this.acciones = [];
+        this.id = id;
     }
-    // Método para agregar una nueva acción
     agregarAccion(accion) {
         this.acciones.push(accion);
     }
-    // Método para eliminar una acción por su ID
     eliminarAccionPorID(id) {
         const indice = this.acciones.findIndex(accion => accion.id === id);
         if (indice !== -1) {
@@ -53,11 +52,9 @@ class Historial {
         }
         return false;
     }
-    // Método para eliminar todas las acciones
     eliminarTodo() {
         this.acciones = [];
     }
-    // Método para mostrar todas las acciones en la consola
     mostrarHistorial() {
         console.log("Historial de acciones:");
         this.acciones.forEach(accion => {
@@ -65,25 +62,15 @@ class Historial {
         });
     }
 }
-// Crear instancias de la clase Accion
 const accion1 = new Accion(1, "Primera acción", new Date("2024-08-01"));
 const accion2 = new Accion(2, "Segunda acción", new Date("2024-08-02"));
-const accion3 = new Accion(3, "Tercera acción", new Date("2024-08-03"));
-// Crear una instancia de la clase Historial
-const historial = new Historial();
-// Agregar acciones al historial
+const historial = new Hiistorial(1);
 historial.agregarAccion(accion1);
 historial.agregarAccion(accion2);
-historial.agregarAccion(accion3);
-// Mostrar el historial actual
 historial.mostrarHistorial();
-// Eliminar una acción por ID
 const eliminado = historial.eliminarAccionPorID(2);
 console.log(`Acción eliminada: ${eliminado}`);
-// Mostrar el historial después de eliminar
 historial.mostrarHistorial();
-// Eliminar todas las acciones
 historial.eliminarTodo();
-// Mostrar el historial vacío
 historial.mostrarHistorial();
 console.log("Programa finalizado.");
