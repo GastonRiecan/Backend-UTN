@@ -19,9 +19,7 @@ class Action {
    * Muestra los detalles de la accion en la consola.
    */
   mostrarDetalle(): void {
-    console.log(`ID: ${this.id}`);
-    console.log(`Descripción: ${this.description}`);
-    console.log(`Fecha: ${this.date}`);
+    console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}`);
   }
 }
 
@@ -49,10 +47,7 @@ class ActionLogin extends Action {
    * Muestra los detalles de la acción de Login en la consola.
    */
   mostrarDetalle(): void {
-    console.log(`ID: ${this.id}`);
-    console.log(`Descripción: ${this.description}`);
-    console.log(`Fecha: ${this.date}`);
-    console.log(`Dispositivo Origen: ${this.dispositivo_origen}`);
+    console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}\nDispositivo Origen: ${this.dispositivo_origen}`);
   }
 }
 
@@ -83,11 +78,7 @@ class ActionLogout extends Action {
    * Muestra los detalles de la acción de Logout en la consola.
    */
   mostrarDetalle(): void {
-    console.log(`ID: ${this.id}`);
-    console.log(`Descripción: ${this.description}`);
-    console.log(`Fecha: ${this.date}`);
-    console.log(`Dispositivo Origen: ${this.dispositivo_origen}`);
-    console.log(`Tiempo de Sesion: ${this.tiempo_de_sesion}`);
+    console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}\nDispositivo Origen: ${this.dispositivo_origen}\nTiempo de Sesión: ${this.tiempo_de_sesion}`);
   }
 }
 
@@ -112,9 +103,8 @@ class Change {
    * Muestra los detalles del cambio en la consola.
    */
   mostrarCambio(): void {
-    console.log(`ID: ${this.id_cambio}`);
-    console.log(`Valor Anterior: ${this.valor_anterior}`);
-    console.log(`Nuevo Valor: ${this.nuevo_valor}`);
+    console.log(`ID: ${this.id_cambio}\nValor Anterior: ${this.valor_anterior}\nNuevo Valor: ${this.nuevo_valor}`);
+
   }
 }
 
@@ -134,10 +124,8 @@ class ActionPerfilUpdate extends Action {
   }
 
   mostrarDetalle(): void {
-    console.log(`ID: ${this.id}`);
-    console.log(`Descripción: ${this.description}`);
-    console.log(`Fecha: ${this.date}`);
-    console.log(`Cambios: ${this.changes}`);
+    console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}\nCambios: ${this.changes}`);
+
   }
 }
 
@@ -169,11 +157,7 @@ class BuyAction extends Action {
    * Se muestran el ID, descripción, fecha, productos comprados y total de la compra.
    */
   mostrarDetalle(): void {
-    console.log(`ID: ${this.id}`);
-    console.log(`Descripción: ${this.description}`);
-    console.log(`Fecha: ${this.date}`);
-    console.log(`Productos: ${this.productos}`);
-    console.log(`Total: ${this.total}`);
+    console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}\nProductos: ${this.productos}\nTotal: ${this.total}`);
   }
 }
 
@@ -205,11 +189,7 @@ class SendMessageAction extends Action {
    * Se muestran el ID, descripción, fecha, destinatario y mensaje.
    */
   mostrarDetalle(): void {
-    console.log(`ID: ${this.id}`);
-    console.log(`Descripción: ${this.description}`);
-    console.log(`Fecha: ${this.date}`);
-    console.log(`Destinatario: ${this.destinatario}`);
-    console.log(`Mensaje: ${this.mensaje}`);
+    console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}\nDestinatario: ${this.destinatario}\nMensaje: ${this.mensaje}`);
   }
 }
 
@@ -270,16 +250,16 @@ let action2 = new Action(2, "Segunda Accion", new Date());
 action2.mostrarDetalle();
 let action3 = new Action(3, "Tercera Accion", new Date());
 action3.mostrarDetalle();
-let log = new ActionLogin(2, "Login", new Date(), "I Phone x");
+let log = new ActionLogin(4, "Login", new Date(), "I Phone x");
 log.mostrarDetalle();
-let logout = new ActionLogout(3, "Logout", new Date(), "I Phone x", 15);
+let logout = new ActionLogout(5, "Logout", new Date(), "I Phone x", 15);
 logout.mostrarDetalle();
-let cambio = new Change(4, "Antiguo valor", "Nuevo valor");
+let cambio = new Change(6, "Antiguo valor", "Nuevo valor");
 cambio.mostrarCambio();
-let modificarPefil = new ActionPerfilUpdate(5, "Modificando perfil", new Date(), [cambio]);
+let modificarPefil = new ActionPerfilUpdate(7, "Modificando perfil", new Date(), [cambio]);
 modificarPefil.mostrarDetalle();
-let compras = new BuyAction(6, "Comprando", new Date(), ["I Phone x", "Samsung a21s"], 5000000);
-let mensajesEnviados = new SendMessageAction(7, "Enviando Mensaje", new Date(), "Hola", "Pepe");
+let compras = new BuyAction(8, "Comprando", new Date(), ["I Phone x", "Samsung a21s"], 5000000);
+let mensajesEnviados = new SendMessageAction(9, "Enviando Mensaje", new Date(), "Hola", "Pepe");
 
 console.log("SECCION DE PRUEBA DE HISTORIAL:");
 let h1 = new Historial();
@@ -288,7 +268,6 @@ h1.addAction(action2);
 h1.addAction(action3);
 h1.addAction(log);
 h1.addAction(logout);
-h1.addAction(cambio);
 h1.addAction(modificarPefil);
 h1.addAction(compras);
 h1.addAction(mensajesEnviados);
@@ -300,3 +279,4 @@ console.log(h1.acciones.length + ": Cantidad de acciones en el historial, luego 
 h1.deleteAllActions();
 console.log(h1.acciones.length + ": Cantidad de acciones en el historial, luego de eliminar todas las acciones");
 h1.showHistorial();
+
