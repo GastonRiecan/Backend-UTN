@@ -9,6 +9,14 @@ recibe 100
 
 */
 
+const sumar = (num1, num2) => {
+    return num1 + num2
+}
+
+console.log(sumar(10, 20));
+
+//Common.js
+
 const calculoIVA = (precio) => {
     const iva = precio * 0.21
     precio_final =  precio + iva
@@ -21,7 +29,7 @@ const calculoIVA = (precio) => {
 }
 
 const validarEmail = (email) => {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;   
     return regex.test(email);
 }
 
@@ -35,9 +43,11 @@ const validarNombre = (nombre) => {
 }
 
 
+
 module.exports  = {
     validarEmail, 
     validarNumero,
-    validarNombre
+    validarNombre,
+    sumar
 }
 

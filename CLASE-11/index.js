@@ -1,17 +1,21 @@
 console.dir("Hello World desde NODE.JS");
 //const calculoIVA = require('./utils/calculosVarios')
 
-const { calculoIVA } = require('./utils/calculosVarios')
+//const { calculoIVA } = require('./utils/calculosVarios')
 
-const precioVaso = 20
+//const precioVaso = 20
 
 //console.log(calculoIVA(precioVaso));
 
 //const { validarEmail, validarNumero, validarNombre } = require('./utils/calculosVarios.js')
 
-const { crearTxt, leerTxt, crearJSON, leerJSON } = require("./utils/sistemaArchivos.js")
+//const { crearTxt, leerTxt, crearJSON, leerJSON } = require("./utils/sistemaArchivos.js")
 
-console.log(leerJSON("persona-1"));
+const { sumar } = require("./utils/calculosVarios.js")
+
+console.log(sumar(10, 20) + "Hola");
+
+//console.log(leerJSON("persona-1"));
 //crearTxt()
 //leerTxt()
 /* const persona = {

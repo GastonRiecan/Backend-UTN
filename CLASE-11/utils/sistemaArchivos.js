@@ -33,7 +33,7 @@ const leerJSON = (direccion_y_nombre) => {
 
 
 module.exports = {
-    crearTxt: crearTxt,
+    crearTxt,
     leerTxt,
     crearJSON,
     leerJSON
