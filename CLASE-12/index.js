@@ -19,7 +19,7 @@ const usuarioSchema = new mongoose.Schema(
 
 const Usuario = mongoose.model("Usuario", usuarioSchema)
 
-new Usuario({
+/* new Usuario({
 	nombre: 'Gaston',
 	email: 'g.e.riecan@gmail.com',
 	rol: 'user',
@@ -28,4 +28,4 @@ new Usuario({
 	direccion: 'los ret'
 }).save()
 	.then(() => console.log('Usuario creado con éxito'))
-	.catch(err => console.error(err));
+	.catch(err => console.error(err)); */

@@ -123,6 +123,10 @@ class ActionPerfilUpdate extends Action {
     this.changes = changes;
   }
 
+  agregarCambio(id_cambio: number, valor_anterior: string, nuevo_valor: string): void {
+    this.changes.push(new Change(id_cambio, valor_anterior, nuevo_valor));
+  }
+
   mostrarDetalle(): void {
     console.log(`ID: ${this.id}\nDescripción: ${this.description}\nFecha: ${this.date}\nCambios: ${this.changes}`);
 

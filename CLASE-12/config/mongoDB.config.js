@@ -16,5 +16,5 @@ database.on("error", () => {
 	console.log("ERROR MONGO DB");
 })
 
-//Estamos exportando a mongoose queya esta conectado, database para poder interactuar con la base de datos.
+//Estamos exportando a mongoose que ya esta conectado, database para poder interactuar con la base de datos.
 export { mongoose, database }
