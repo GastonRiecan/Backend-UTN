@@ -1,5 +1,6 @@
 import { type } from "os";
 import { mongoose } from "./config/mongoDB.config.js";
+import ERRORES from "./constants/errors.js";
 
 /* 
 MongoDB NO TIENE SCHEMAS
@@ -19,13 +20,25 @@ const usuarioSchema = new mongoose.Schema(
 
 const Usuario = mongoose.model("Usuario", usuarioSchema)
 
-/* new Usuario({
-	nombre: 'Gaston',
-	email: 'g.e.riecan@gmail.com',
-	rol: 'user',
-	password: 'asd123',
-	telefono: '1245234346453',
-	direccion: 'los ret'
-}).save()
-	.then(() => console.log('Usuario creado con éxito'))
-	.catch(err => console.error(err)); */
+
+const creararUsuario = async (nombre, email, rol, password, telefono, direccion) => {
+	try {
+		const usuario = new Usuario({
+			nombre,
+			email,
+			rol,
+			password,
+			telefono,
+			direccion
+		})
+		const resultado = await usuario.save()
+		return resultado
+	}
+	catch (error) {
+		const customError = ERRORES[error.code]
+		console.log(customError);
+		console.log(error);
+	}
+}
+
+creararUsuario("Gaston", "b5j5J@example.com", "admin", "admin123", "123456789", "Calle 123")
