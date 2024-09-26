@@ -1,7 +1,1 @@
-[
-    {
-        "nombre": "pepe",
-        "apellido": "Suarez",
-        "edad": 20
-    }
-]
+{"nombre":"Gaston","apellido":"Riecan","edad":37}

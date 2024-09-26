@@ -2,7 +2,7 @@
 //EJEMPLOS:
 //getProductById 
 
-import { leerJson } from "../helpers/jsonManager.util.js"
+import { leerJson, crearJson } from "../helpers/jsonManager.util.js"
 
 /* 
 Ventajas de repository:
@@ -22,4 +22,17 @@ const getUserByName = async (name) => {
         console.error(error)
     }
 }
+
+const data = {
+    "nombre": "Gaston",
+    "apellido": "Riecan",
+    "edad": 37
+}
+
+const newUser = crearJson('usuarios', data)
+
+
+
+
+
 export { getUserByName }
