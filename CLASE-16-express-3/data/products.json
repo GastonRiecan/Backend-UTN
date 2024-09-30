@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "price": 109.95,
+    "category": "clothing",
+    "id": 1,
+    "stock": 5
+  },
+  {
+    "title": "nuevo tv",
+    "price": 3000,
+    "categoria": "TECNOLOGIA",
+    "id": 2,
+    "stock": 2
+  },
+  {
+    "title": "gorra tennis",
+    "price": 1000,
+    "categoria": "ROPA",
+    "id": 4,
+    "stock": 20
+  },
+  {
+    "title": "nuevo nombre tv",
+    "price": 2000,
+    "categoria": "ELECTRODOMESTICO",
+    "id": 5,
+    "stock": 2
+  }
+]
