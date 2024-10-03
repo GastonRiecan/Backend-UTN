@@ -1,0 +1,18 @@
+
+
+{{#if this.ok}}
+	<h1>{{this.Titulo}}</h1>
+	<span>Fecha: {{this.Fecha}}</span>
+	<span>Dolar: {{this.valor_dolar}}</span>
+	{{#each this.data.productos}}
+		<div>
+			{{!-- this hace referencia dentro de each a cada elemento --}}
+			<h3>{{this.nombre}}</h3>
+			<span>Precio: {{this.precio}}</span>
+			<a href="./products/{{this.id}}">Ver detalle</a>
+			<hr>
+		</div>
+	{{/each}}
+	{{else}}
+	<h1>Error{{this.data.detail}}</h1>
+{{/if}}
