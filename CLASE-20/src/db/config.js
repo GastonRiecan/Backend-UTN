@@ -1,11 +1,16 @@
+import ENVIROMENT from '../config/enviroment.config.js';
 import mongoose from "mongoose";
 
-mongoose.connect(process.env.DB_URL)
-	.then(() => {
-		console.log('Database connected OK!')
-	})
-	.catch((err) => {
-		console.log("Error connecting to database", err)
-	})
+console.log(ENVIROMENT);
+
+mongoose.connect(ENVIROMENT.DB_URL)
+	.then(
+		() => {
+			console.log('Database connected OK!')
+		})
+	.catch(
+		(error) => {
+			console.error("Error connecting to database")
+		})
 
 export default mongoose
