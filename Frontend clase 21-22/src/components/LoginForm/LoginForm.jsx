@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./styles.css";
+
 
 const LoginForm = () => {
   return (
-		<div>
-      <h1>Inicia sesiòn</h1>
+		<div className="login-form">
+      <h1>Inicia sesion</h1>
       <form action="">
         <div>
           <label htmlFor="email">Ingrese su email:</label>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import extractFormData from "../utils/extractFormData";
+import "./styles.css";
+import extractFormData from "../../utils/extractFormData.js";
 
 const RegisterForm = () => {
   const handleSubmitRegisterForm = (e) => {
@@ -31,7 +32,7 @@ const RegisterForm = () => {
       });
   };
   return (
-    <div>
+    <div className="register-form">
       <h1>Registrate en nuestra web</h1>
       <form onSubmit={handleSubmitRegisterForm}>
         <div>
