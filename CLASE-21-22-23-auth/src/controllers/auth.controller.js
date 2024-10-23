@@ -4,6 +4,7 @@ import ResponseBuilder from "../utils/builders/responseBuilder.js"
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
 import enviarEmail from "../utils/mail.util.js";
+import UserRepository from "../repositories/user.repository.js";
 
 
 
@@ -45,7 +46,7 @@ export const registerUserController = async (req, res) => {
 			expiresIn: '1d'
 		})
 
-		const url_verification = `http://localhost:${ENVIROMENT.port}/api/auth/verify/${verificationToken}`
+		const url_verification = `http://localhost:${ENVIROMENT.BACKPORT}/api/auth/verify/${verificationToken}`
 
 		await enviarEmail({
 			to: email,
@@ -165,14 +166,14 @@ export const verifyEmailValidationTokenController = async (req, res) => {
 export const loginController = async (req, res) => {
 	try {
 		const { email, password } = req.body
-		const user = await User.findOne({ email })
+		const user = await UserRepository.obtenerPorEmail(email)
 		if (!user) {
 			const response = new ResponseBuilder()
 				.setOk(false)
 				.setStatus(404)
 				.setMessage('Usuario no encontrado')
 				.setPayload({
-					detail: 'El email no esta regisdtrado'
+					detail: 'El email no esta registrado'
 				})
 				.build()
 			return res.json(response)
@@ -191,7 +192,7 @@ export const loginController = async (req, res) => {
 			return res.json(response)
 		}
 
-		const isValidPassword = await bcrypt.compare(password, user, password)
+		const isValidPassword = await bcrypt.compare(password, user.password)
 		if (!isValidPassword) {
 			const response = new ResponseBuilder()
 				.setOk(false)
@@ -240,3 +241,168 @@ export const loginController = async (req, res) => {
 	}
 }
 
+
+export const forgotPassswordController = async (req, res) => {
+	try {
+		const { email } = req.body
+		if (!email) {
+			const response = new ResponseBuilder()
+				.setOk(false)
+				.setStatus(400)
+				.setMessage('Email invalido')
+				.setPayload({
+					detail: 'El email no existe o es incorrecto'
+				})
+				.build()
+			return res.status(400).json(response)
+		}
+
+		const user = await UserRepository.obtenerPorEmail(email)
+		if (!user) {
+			const response = new ResponseBuilder()
+				.setOk(false)
+				.setStatus(404)
+				.setMessage('Usuario no encontrado')
+				.setPayload({
+					detail: 'No se encontro el usuario'
+				})
+				.build()
+			res.status(404).json(response)
+		}
+
+		const resetToken = jwt.sign({ email: user.email }, ENVIROMENT.JWT_SECRET, { expiresIn: '1h' })
+
+
+		const resetURL = `http://localhost:${ENVIROMENT.FRONTPORT}/reset-password/${resetToken}`
+
+		enviarEmail({
+			to: user.email,
+			subject: 'Recuperacion de contraseña',
+			html: `
+			<div>
+				<h1>Recuperacion de contraseña</h1>
+				<p>Da click en el boton de abajo para recuperar tu contraseña</p>
+				<a href='${resetURL}'>Restablecer</a>
+			</div>
+			`
+		})
+
+		const response = new ResponseBuilder()
+		response
+			.setOk(true)
+			.setStatus(200)
+			.setMessage('Email enviado con exito')
+			.setPayload({
+				detail: 'Se envio un correo electronico para restablecer tu contraseña'
+			})
+			.build()
+		return res.status(200).json(response)
+
+	}
+	catch (error) {
+		const response = new ResponseBuilder()
+			.setOk(false)
+			.setStatus(500)
+			.setMessage('Internal server error')
+			.setPayload({
+				detail: error.message
+			})
+			.build()
+		return res.status(500).json(response)
+	}
+}
+
+
+export const resetTokenController = async (req, res) => {
+	try {
+
+		const { password } = req.body
+		if (!password) {
+			const response = new ResponseBuilder()
+				.setOk(false)
+				.setStatus(400)
+				.setMessage('Se requiere la nueva contraseña')
+				.setPayload({
+					detail: 'Falta contraseña nueva'
+				})
+				.build()
+			return res.json(response)
+		}
+
+		const { reset_token } = req.params
+
+		if (!reset_token) {
+			const response = new ResponseBuilder()
+				.setOk(false)
+				.setStatus(400)
+				.setMessage('Token Incorrecto')
+				.setPayload({
+					detail: 'El reset_token expiro o no es valido'
+				})
+				.build()
+			return res.json(response)
+		}
+
+		const decoded = jwt.verify(reset_token, ENVIROMENT.JWT_SECRET)
+
+		console.log(decoded);
+
+
+		if (!decoded) {
+			const response = new ResponseBuilder()
+				.setOk(false)
+				.setStatus(400)
+				.setMessage('Token Incorrecto')
+				.setPayload({
+					detail: 'Fallo token de verificación'
+				})
+				.build()
+			return res.json(response)
+		}
+
+		const { email } = decoded
+
+		const user = await UserRepository.obtenerPorEmail(email)
+
+		if (!user) {
+			const response = new ResponseBuilder()
+				.setOk(false)
+				.setStatus(400)
+				.setMessage('No se encontro el usuario')
+				.setPayload({
+					detail: 'Usuario inexistente o invalido'
+				}
+				)
+		}
+
+		const encriptedPassword = await bcrypt.hash(password, 10);
+
+		const comparacion = await bcrypt.compare(password, encriptedPassword)
+
+		user.password = encriptedPassword
+
+		await user.save()
+
+		const response = new ResponseBuilder()
+			.setOk(true)
+			.setStatus(200)
+			.setMessage('Contraseña restablecida!')
+			.setPayload({
+				detail: 'Se actualizo la contraseña correctamente'
+			})
+		res.status(200).json(response)
+
+
+		await user.password.save()
+
+
+	}
+	catch (error) {
+		return res.status(500).json({
+			ok: false,
+			message: 'Error interno del servidor',
+			error: error.message,
+		});
+	}
+
+}

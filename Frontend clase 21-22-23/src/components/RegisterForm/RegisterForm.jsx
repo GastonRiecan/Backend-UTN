@@ -24,12 +24,20 @@ const RegisterForm = () => {
       },
       body: JSON.stringify(extractedForm),
     })
-      .then((response) => {
-        console.log({ response });
+      .then((responseHTTP) => {
+        console.log({ responseHTTP });
+        return responseHTTP.json()
       })
       .catch((error) => {
         console.error(error);
-      });
+      })
+      .then(
+        (body) => {
+          console.log({body});
+          
+        }
+      )
+      ;
   };
   return (
     <div className="register-form">
