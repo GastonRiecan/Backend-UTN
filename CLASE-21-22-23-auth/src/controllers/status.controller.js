@@ -1,6 +1,11 @@
+import ResponseBuilder from "../utils/builders/responseBuilder.js"
+
 export const getPingController = (req, res) => {
 
 	try {
+
+		console.log(req.user);
+
 		const response = new ResponseBuilder()
 			.setOk(true)
 			.setStatus(200)

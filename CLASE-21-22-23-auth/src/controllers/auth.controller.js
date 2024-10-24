@@ -377,8 +377,6 @@ export const resetTokenController = async (req, res) => {
 
 		const encriptedPassword = await bcrypt.hash(password, 10);
 
-		const comparacion = await bcrypt.compare(password, encriptedPassword)
-
 		user.password = encriptedPassword
 
 		await user.save()
