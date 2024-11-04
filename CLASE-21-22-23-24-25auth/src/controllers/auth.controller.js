@@ -208,7 +208,13 @@ export const loginController = async (req, res) => {
 		}
 
 		//Hacemos un TOKEN para validar opciones en nuestra app
-		const token = jwt.sign({ email: user.email, id: user._id }, ENVIROMENT.JWT_SECRET, { expiresIn: '1d' })
+		const token = jwt.sign({
+			email: user.email,
+			id: user._id,
+			role: user.role
+		},
+			ENVIROMENT.JWT_SECRET, { expiresIn: '1d' })
+
 		const response = new ResponseBuilder()
 			.setOk(true)
 			.setStatus(200)
@@ -219,7 +225,8 @@ export const loginController = async (req, res) => {
 					user: {
 						id: user._id,
 						name: user.name,
-						email: user.email
+						email: user.email,
+						role: user.role
 					}
 				}
 			)
@@ -373,6 +380,8 @@ export const resetTokenController = async (req, res) => {
 					detail: 'Usuario inexistente o invalido'
 				}
 				)
+				.build()
+			return res.json(response)
 		}
 
 		const encriptedPassword = await bcrypt.hash(password, 10);
@@ -389,11 +398,6 @@ export const resetTokenController = async (req, res) => {
 				detail: 'Se actualizo la contraseña correctamente'
 			})
 		res.status(200).json(response)
-
-
-		await user.password.save()
-
-
 	}
 	catch (error) {
 		return res.status(500).json({

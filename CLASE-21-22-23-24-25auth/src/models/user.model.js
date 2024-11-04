@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     verificationToken: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        required: true,
+        default: 'user'
     }
 });
 

@@ -2,33 +2,56 @@ import React from "react";
 import { Link } from "react-router-dom";
 import extractFormData from "../../utils/extractFormData.js";
 import "./styles.css";
+import { POST } from "../../fetching/http.fetching.js";
+
+/* 
+
+post(direccion, body) //Devuelva el body de la response.
+
+*/
+
+
+
+
+/* const sendEmailForgot = async (form_values_object) => {
+  try {
+    const response = await fetch(
+      "http://localhost:3000/api/auth/forgot-password",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", //Aca le indicamos al back que lo que enviamos es un JSON
+        },
+        body: JSON.stringify(form_values_object),
+      }
+    );
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+}; */
 
 const ForgotPasswordForm = () => {
-  const handleSubmitLoginForm = (e) => {
-    e.preventDefault();
-    const form_HTML = e.target;
-    const form_Values = new FormData(form_HTML);
-    const form_fields = {
-      email: "",
-    };
-    const form_values_object = extractFormData(form_fields, form_Values);
-    fetch("http://localhost:3000/api/auth/forgot-password", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", //Aca le indicamos al back que lo que enviamos es un JSON
-      },
-      body: JSON.stringify(form_values_object),
-    })
-      .then((response) => {
-        console.log({ response });
-        return response.json();
-      })
-      .then((body) => {
-        console.log({ body });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handleSubmitLoginForm = async (e) => {
+    try {
+      e.preventDefault();
+      const form_HTML = e.target;
+      const form_Values = new FormData(form_HTML);
+      const form_fields = {
+        email: "",
+      };
+      const form_values_object = extractFormData(form_fields, form_Values);
+      const body = await POST("http://localhost:3000/api/auth/forgot-password", form_values_object)
+      //Si hubiera algun error, lo imprimen usando el valor de body.
+      //Por ejemplo: pueden cambiar el estado para que aparezca un error
+      //De ser necesario cambien como responde su backend
+      if (!body.ok) {
+        //setError
+      }
+      console.log({ body });
+    } catch (error) {
+      //Errores se manejan aqui
+    }
   };
 
   return (
@@ -41,7 +64,12 @@ const ForgotPasswordForm = () => {
         </p>
         <div>
           <label htmlFor="email">Ingrese su email:</label>
-          <input name="email" id="email" placeholder="pepe@gmail.com" />
+          <input 
+          name="email" 
+          id="email" 
+          placeholder="pepe@gmail.com"
+          onChange={handleChangeInputValue}
+          />
         </div>
         <button type="submit">Enviar mail</button>
         <span>

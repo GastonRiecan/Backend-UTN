@@ -2,18 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ad63f37-1af0-461d-91c8-71de6724dbda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/config/enviroment.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/controllers/auth.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/controllers/status.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/db/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/models/user.model.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/router/auth.router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/router/status.router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CLASE-20/src/utils/builders/responseBuilder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/clase-23-objetivos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/config/enviroment.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/config/transporter.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/controllers/auth.controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/controllers/status.controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/db/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/middlewares/auth.middleware.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/models/user.model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/repositories/user.repository.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/router/auth.router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/router/status.router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/utils/builders/responseBuilder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CLASE-21-22-23-auth/src/utils/mail.util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend clase 21-22-23/src/components/ForgotPassForm/ForgotPasswordForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend clase 21-22-23/src/components/ForgotPassForm/ForgotPasswordForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend clase 21-22-23/src/components/RegisterForm/RegisterForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend clase 21-22-23/src/components/RegisterForm/RegisterForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,23 +31,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2naeNkkpHTSNfqsF4jTSlqvtWsi" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -56,6 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729215577137</updated>
       <workItem from="1729215578898" duration="71000" />
+      <workItem from="1730463649937" duration="79000" />
     </task>
     <servers />
   </component>
