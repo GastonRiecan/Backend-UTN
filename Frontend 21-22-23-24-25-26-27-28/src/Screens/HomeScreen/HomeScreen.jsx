@@ -9,7 +9,7 @@ const getProducts = async () => {
   const response = await GET("http://localhost:3000/api/products", {
     headers: getAuthenticatedHeaders(),
   });
-  console.log('aaaaaaaaaaaaa',{ response });
+  console.log({ response });
 };
 const HomeScreen = () => {
   const user_info = JSON.parse(sessionStorage.getItem("user_info"));
@@ -20,7 +20,9 @@ const HomeScreen = () => {
   return (
     <div>
       <h1>Bienvenido de vuelta {user_info.name}!</h1>
-      <Link className="crear-link" to={"/product/new"}>Crear producto</Link>
+      <Link className="crear-link" to={"/product/new"}><b>CREAR PRODUCTO</b></Link>
+      <br />
+      <br />
       {
         isLoadingProducts
         ? <span>Cargando...</span>

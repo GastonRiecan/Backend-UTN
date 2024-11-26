@@ -8,6 +8,7 @@ import HomeScreen from './Screens/HomeScreen/HomeScreen'
 import CreateProductScreen from './Screens/CreateProductScreen/CreateProductScreen'
 import ProductList from './components/ProductList/ProductList'
 import DetailProductScreen from './Screens/DetailProductScreen/DetailProductScreen'
+import { VerifyMail } from './Screens/VerifyMail/VerifyMail'
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path='/home' element={ <HomeScreen/> } />
       <Route path='/product/new' element={ <CreateProductScreen/> } />
       <Route path='/product/:product_id' element={ <DetailProductScreen/> } />
+      <Route path='/verify/:verificationToken' element={ <VerifyMail/> } />
     </Routes>
     </>
   )

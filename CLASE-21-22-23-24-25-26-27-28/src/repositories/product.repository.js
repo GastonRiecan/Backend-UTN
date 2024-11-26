@@ -65,6 +65,55 @@ class ProductRepository {
         }
     }
 
+    static async updateProduct(product_id, product_data) {
+        const { title, stock, price, description, seller_id, image_base_64, active } = product_data;
+
+        const query = `
+            UPDATE products 
+            SET 
+                title = ?, 
+                stock = ?, 
+                price = ?, 
+                description = ?, 
+                seller_id = ?, 
+                image_base_64 = ?, 
+                active = ? 
+            WHERE id = ?`;
+
+        const [resultado] = await database_pool.execute(query, [
+            title, stock, price, description, seller_id, image_base_64, active, product_id
+        ]);
+
+        if (resultado.affectedRows > 0) {
+            return {
+                id: product_id,
+                title,
+                stock,
+                price,
+                description,
+                seller_id,
+                image_base_64,
+                active
+            };
+        } else {
+            return null; // Si no se actualizó ningún producto
+        }
+    }
+
+    static async deleteProduct(product_id) {
+        const query = `
+            UPDATE products 
+            SET active = false 
+            WHERE id = ?`;
+
+        const [resultado] = await database_pool.execute(query, [product_id]);
+
+        if (resultado.affectedRows > 0) {
+            return { message: 'Producto desactivado correctamente', id: product_id };
+        } else {
+            return { message: 'Producto no encontrado', id: product_id };
+        }
+    }
 
 }
 

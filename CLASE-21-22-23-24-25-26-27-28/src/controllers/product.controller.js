@@ -39,7 +39,7 @@ export const getAllProductByIDController = async (req, res) => {
         const { product_id } = req.params;
         console.log("Product ID recibido:", product_id);
 
-        const product_found = await ProductRepository.getProductById(product_id);
+        const product_found = await ProductRepository.getProductsById(product_id);
 
         if (!product_found) {
             const response = new ResponseBuilder()

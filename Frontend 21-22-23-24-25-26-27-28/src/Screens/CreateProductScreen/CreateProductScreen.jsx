@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import extractFormData from '../../utils/extractFormData'
 import { getAuthenticatedHeaders, POST  } from '../../fetching/http.fetching'
+import { useNavigate } from 'react-router-dom';
 
 const CreateProductScreen = () => {
 	
     const [image, setImage] = useState('')
+	const [isProductCreated, setIsProductCreated] = useState(false)
+	const navigate = useNavigate()
+
     const handleSubmitNewProduct = async (e) => {
         try{
 			
@@ -28,12 +32,19 @@ const CreateProductScreen = () => {
 				body: JSON.stringify(form_values_object)
 			})
 			console.log({response})
+			if(response.ok) {
+				setIsProductCreated(true)
+			} else {
+				alert('Error al crear el producto')
+			}
 		}
 		catch(error){
-			//manejan sus errores
 			console.error(error)
 		}
     }
+	const goToHome = () => {
+        navigate('/home'); 
+    };
 
     const handleChangeFile = (evento) => {
 
@@ -63,12 +74,12 @@ const CreateProductScreen = () => {
             lector_archivos.readAsDataURL(file_found)
         }
     }
-  return (
+return (
     <div>
         <form onSubmit={handleSubmitNewProduct}>
                 <div>
 					<label htmlFor='titulo'>Ingrese el titulo:</label>
-					<input name='title' id='titulo' placeholder='pepe@gmail.com' />
+					<input name='title' id='titulo'/>
 				</div>
 				<div>
 					<label htmlFor='precio'>Ingrese el precio:</label>
@@ -95,9 +106,16 @@ const CreateProductScreen = () => {
 				</div>
 
 				<button type='submit'>Crear producto</button>
+
+					<br/>
+					<br/>
+				
+				{isProductCreated && (
+                <button onClick={goToHome}>Ir a la página de inicio</button>
+            )}
         </form>
     </div>
-  )
+)
 }
 
 export default CreateProductScreen

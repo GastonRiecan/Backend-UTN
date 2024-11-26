@@ -70,6 +70,10 @@ export const verifyTokenMiddleware = (roles_permitidos = []) => {
 }
 
 export const verifyApikeyMiddleware = (req, res, next) => {
+    console.log('Headers recibidos:', req.headers);  // Verifica los encabezados
+    console.log('API Key recibida:', req.headers['x-api-key']);
+    console.log('API Key esperada:', ENVIROMENT.API_KEY_INTERN);
+
     try {
         const apikey_header = req.headers['x-api-key']
         if (!apikey_header) {
@@ -96,7 +100,7 @@ export const verifyApikeyMiddleware = (req, res, next) => {
             return res.status(401).json(response)
         }
 
-        next()
+        next();
 
     }
     catch (error) {
